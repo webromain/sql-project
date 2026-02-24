@@ -1,4 +1,4 @@
-DELIMITER $$
+DELIMITER 
 
 CREATE PROCEDURE TopSpeaker()
 BEGIN
@@ -7,8 +7,8 @@ BEGIN
     INNER JOIN session ON session.id_speaker = speaker.id_speaker
     WHERE utilisateur.role = 'intervenant'
     GROUP BY utilisateur.id_user, utilisateur.prenom, utilisateur.nom
-    ORDER BY nbr_sesssions;
+    ORDER BY nbr_sesssions DESC;
 
-END$$
+END
 
 DELIMITER ;
