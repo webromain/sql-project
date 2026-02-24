@@ -1,0 +1,84 @@
+TABLE UTILISATEUR
+
+Clé primaire : id_user
+
+Clés étrangères :Aucune
+
+Cardinalités :
+Un utilisateur peut avoir 0 à N inscriptions
+Une inscription appartient à 1 seul utilisateur
+
+Un utilisateur peut être 0 ou 1 speaker
+Un speaker correspond à 1 seul utilisateur
+
+Un utilisateur peut écrire 0 à N avis
+Un avis appartient à 1 seul utilisateur
+
+TABLE EVENEMENT
+
+Clé primaire :id_event
+
+Clés étrangères :Aucune
+
+Cardinalités :
+Un événement peut avoir 0 à N inscriptions
+Une inscription concerne 1 seul événement
+
+Un événement peut avoir 0 à N sessions
+Une session appartient à 1 seul événement
+
+Un événement peut avoir 0 à N avis
+Un avis concerne 1 seul événement
+
+TABLE SPEAKER
+
+Clé primaire :id_speaker
+
+Clé étrangère :id_user référence utilisateur(id_user)
+
+Cardinalités :
+Un utilisateur peut être 0 ou 1 speaker
+Un speaker correspond à 1 seul utilisateur
+
+Un speaker peut avoir 0 à N sessions
+Une session appartient à 1 seul speaker
+
+TABLE SESSION
+
+Clé primaire :id_session
+
+Clés étrangères :id_event référence evenement(id_event),id_speaker référence speaker(id_speaker)
+
+Cardinalités :
+Un événement peut avoir 0 à N sessions
+Une session appartient à 1 seul événement
+
+Un speaker peut avoir 0 à N sessions
+Une session appartient à 1 seul speaker
+
+TABLE INSCRIPTION
+
+Clé primaire :id_registration
+
+Clés étrangères :id_user référence utilisateur(id_user),id_event référence evenement(id_event)
+
+Cardinalités :
+Un utilisateur peut avoir 0 à N inscriptions
+Un événement peut avoir 0 à N inscriptions
+
+Cette table représente une relation plusieurs à plusieurs entre utilisateur et evenement
+
+TABLE AVIS
+
+Clé primaire :id_review
+
+Clés étrangères :id_user référence utilisateur(id_user),id_event référence evenement(id_event)
+
+Cardinalités :
+Un utilisateur peut écrire 0 à N avis
+Un événement peut avoir 0 à N avis
+
+
+
+
+Cette architecture sépare clairement chaque info (utilisateurs, événements, avis) pour éviter les doublons et les erreurs de données. Les liens entre les tables (comme les inscriptions) permettent de gérer les option complexes, comme le paiement ou les plannings. C’est une structure propre et facile à faire évoluer pour une application pro.
